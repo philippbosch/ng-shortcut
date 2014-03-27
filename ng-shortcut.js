@@ -11,15 +11,16 @@
           for (_i = 0, _len = combos.length; _i < _len; _i++) {
             combo = combos[_i];
             _results.push((function(combo) {
-              var keycode, modifiers, parts;
+              var handler, keycode, modifiers, parts;
               parts = combo.split('-');
               keycode = parseInt(parts[parts.length - 1], 10);
               modifiers = parts.slice(0, parts.length - 1);
-              return $document.on('keydown', function(e) {
+              handler = function(e) {
                 var eventName, meta, _j, _len1, _ref;
                 if (e.keyCode !== keycode) {
                   return;
                 }
+                e.stopImmediatePropagation();
                 _ref = ['shift', 'ctrl', 'alt', 'meta'];
                 for (_j = 0, _len1 = _ref.length; _j < _len1; _j++) {
                   meta = _ref[_j];
@@ -33,6 +34,10 @@
                 } else {
                   return element.trigger(eventName);
                 }
+              };
+              $document.on('keydown', handler);
+              return element.on('$destroy', function() {
+                return $document.off('keydown', handler);
               });
             })(combo));
           }

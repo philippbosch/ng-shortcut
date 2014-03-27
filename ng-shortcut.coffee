@@ -12,8 +12,10 @@ angular
                     keycode = parseInt(parts[parts.length-1], 10)
                     modifiers = parts.slice(0, parts.length-1)
 
-                    $document.on 'keydown', (e) ->
+                    handler = (e) ->
                         return if e.keyCode != keycode
+                        e.stopImmediatePropagation()
+
                         for meta in ['shift', 'ctrl', 'alt', 'meta']
                             return if !(modifiers.indexOf(meta) == -1) != e["#{meta}Key"]
 
@@ -22,4 +24,8 @@ angular
                             element.triggerHandler(eventName)
                         else
                             element.trigger(eventName)
+
+                    $document.on 'keydown', handler
+                    element.on '$destroy', ->
+                        $document.off('keydown', handler)
     ])

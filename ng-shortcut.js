@@ -16,7 +16,7 @@
               keycode = parseInt(parts[parts.length - 1], 10);
               modifiers = parts.slice(0, parts.length - 1);
               return $document.on('keydown', function(e) {
-                var meta, _j, _len1, _ref;
+                var eventName, meta, _j, _len1, _ref;
                 if (e.keyCode !== keycode) {
                   return;
                 }
@@ -27,7 +27,12 @@
                     return;
                   }
                 }
-                return element.triggerHandler(attrs.shortcutEvent || 'click');
+                eventName = attrs.shortcutEvent || 'click';
+                if ('shortcutTriggerHandler' in attrs) {
+                  return element.triggerHandler(eventName);
+                } else {
+                  return element.trigger(eventName);
+                }
               });
             })(combo));
           }

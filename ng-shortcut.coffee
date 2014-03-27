@@ -17,5 +17,9 @@ angular
                         for meta in ['shift', 'ctrl', 'alt', 'meta']
                             return if !(modifiers.indexOf(meta) == -1) != e["#{meta}Key"]
 
-                        element.triggerHandler(attrs.shortcutEvent or 'click')
+                        eventName = attrs.shortcutEvent or 'click'
+                        if 'shortcutTriggerHandler' of attrs
+                            element.triggerHandler(eventName)
+                        else
+                            element.trigger(eventName)
     ])

@@ -42,7 +42,14 @@ A tiny tool to help you find out which key codes to use can be found [here](http
 
 ### Triggered event
 
-By default the `click` event will be triggered when the specified shortcut is used. You can configure a different event to be triggered by using the additional `shortcut-event="focus"` attribute.
+By default the `click` event will be triggered when the specified shortcut is
+used. You can configure a different event to be triggered by using the
+additional `shortcut-event="focus"` attribute.
+
+Also, by default the `trigger` method on the `element` is used to trigger the
+event. If you want to use the `triggerHandler` method instead, add an
+additional `shortcut-trigger-handler` attribute. (*Note: This changed in 0.1.1.
+In 0.1.0 the `triggerHandler` was always used.*)
 
 
 License

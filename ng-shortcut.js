@@ -17,7 +17,7 @@
               modifiers = parts.slice(0, parts.length - 1);
               handler = function(e) {
                 var eventName, meta, _j, _len1, _ref;
-                if (e.keyCode !== keycode) {
+                if (e.keyCode !== keycode || ('closest' in element && element.closest('.ng-leave').length)) {
                   return;
                 }
                 e.stopImmediatePropagation();

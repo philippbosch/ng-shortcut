@@ -13,7 +13,7 @@ angular
                     modifiers = parts.slice(0, parts.length-1)
 
                     handler = (e) ->
-                        return if e.keyCode != keycode
+                        return if e.keyCode != keycode or ('closest' of element and element.closest('.ng-leave').length)
                         e.stopImmediatePropagation()
 
                         for meta in ['shift', 'ctrl', 'alt', 'meta']

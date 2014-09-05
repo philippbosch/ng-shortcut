@@ -52,6 +52,17 @@ additional `shortcut-trigger-handler` attribute. (*Note: This changed in 0.1.1.
 In 0.1.0 the `triggerHandler` was always used.*)
 
 
+### Browser shortcuts
+
+There are certain browser shortcut bindings that can be prevented; for example, 
+`ctrl-79` for Command+O to open a file.  If you want to attempt to prevent the 
+browser's default behavior for a given shortcut use the `shortcut-prevent-default="true"`
+attribute.
+
+Some browser shortcut bindings cannot be prevented or overridden and varies by browser.
+For example, Google Chrome does not allow Command+T (new tab) or Command+N (new window)
+to be prevented or overridden.
+
 License
 -------
 

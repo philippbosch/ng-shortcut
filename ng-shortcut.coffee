@@ -18,6 +18,8 @@ angular
 
                         for meta in ['shift', 'ctrl', 'alt', 'meta']
                             return if !(modifiers.indexOf(meta) == -1) != e["#{meta}Key"]
+                            
+                        e.preventDefault() if scope.$eval(attrs.shortcutPreventDefault)
 
                         eventName = attrs.shortcutEvent or 'click'
                         if 'shortcutTriggerHandler' of attrs
